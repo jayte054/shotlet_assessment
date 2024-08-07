@@ -10,15 +10,15 @@ export class RedisService {
     this.redis = new Redis({
       host: process.env.REDIS_HOST,
       port: parseInt(process.env.REDIS_PORT, 10),
-    });
+    }) || new Redis(process.env.REDIS_URL);
   }
 
   ///initializing redis======
   getClient(): Redis {
-    try{
-    return this.redis;
-    }catch(error){
-      throw new InternalServerErrorException()
+    try {
+      return this.redis;
+    } catch (error) {
+      throw new InternalServerErrorException();
     }
   }
 }
