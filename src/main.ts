@@ -15,10 +15,10 @@ async function bootstrap() {
     .addApiKey(
       {
         type: 'apiKey',
-        name: 'x-api-key', // This should match the key your guard checks
+        name: 'x-api-key',
         in: 'header',
       },
-      'api-key', // This is the name used to reference this security definition
+      'api-key',
     )
     .build();
 
@@ -27,7 +27,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const configService = app.get(ConfigService);
-  const port = configService.get('server.port', 3002);
+  const port = process.env.PORT || configService.get<number>('server.port', 3002);
   await app.listen(port);
   logger.log('application is running on port:', port);
 }
