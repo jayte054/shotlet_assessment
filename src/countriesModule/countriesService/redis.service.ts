@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Redis } from 'ioredis';
 import { config } from 'dotenv';
 
@@ -15,6 +15,10 @@ export class RedisService {
 
   ///initializing redis======
   getClient(): Redis {
+    try{
     return this.redis;
+    }catch(error){
+      throw new InternalServerErrorException()
+    }
   }
 }
