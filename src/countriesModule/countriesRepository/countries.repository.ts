@@ -58,6 +58,7 @@ export class CountryRepository extends Repository<CountryEntity> {
     return endResult;
   };
 
+  //==get region api====
   getRegion = async () => {
     const getRegions = await axios.get(`https://restcountries.com/v3.1/all`);
     const regions = getRegions.data.reduce(
@@ -92,6 +93,7 @@ export class CountryRepository extends Repository<CountryEntity> {
     return regions;
   };
 
+  //====get languages api====//
   getLanguages = async () => {
     const { data } = await axios.get(`https://restcountries.com/v3.1/all`);
     const languages = data.reduce(
@@ -120,6 +122,7 @@ export class CountryRepository extends Repository<CountryEntity> {
     return languages;
   };
 
+  //=====getAggregatedStats api ====
   getAggregatedStats = async () => {
     const { data } = await axios.get('https://restcountries.com/v3.1/all');
 
@@ -200,7 +203,6 @@ export class CountryRepository extends Repository<CountryEntity> {
       },
     };
 
-    console.log(result);
     return result;
   };
 }

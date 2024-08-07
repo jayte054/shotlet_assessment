@@ -71,3 +71,101 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Database: Postgres
+## ORM: TypeOrm
+
+## Entities: CountryEntity, GetCountryEntity, AuthEntity
+
+## endpoints
+authController: generateApiKey()
+               validateApiKey()
+
+               generateApiKey() takes in parameter of username from the body of the request to create an apiKey for the client and store it in the database
+
+               validateApiKey() takes in a parameter of the apiKey to validate the user.
+
+countries.controller: countryData()
+                     getCountry(name)
+                     fetchCountryData(
+                        @Query('sortBy') sortBy: keyof GetCountryEntity,
+                        @Query('order') order: 'ASC' | 'DESC' = 'ASC',
+                      )
+                      getRegion()
+                      getLanguages()
+                      getAggregatedStats()
+
+                      countryData() 'Retrieve a list of countries with pagination and optional filtering by region or population size.',
+
+                      getCountry(name) Retrieve detailed information for a specific country, including its languages, population, area, and bordering countries.
+
+                      fetchCountryData() Retrieve saved country data from the database
+
+                      getRegion()  Retrieve a list of regions and the countries within each region, with additional aggregated data such as the total population of the region.
+
+                      getLanguages() Retrieve a list of languages and the countries where they are spoken. Include the total number of speakers globally for each language.
+
+                      getAggregatedStats() Provide aggregated statistics such as the total number of countries, the largest country by area, the smallest by population, and the most widely spoken language.
+
+  
+  ## Architecture 
+
+      Github
+      ||
+      Render Platform
+      ||
+      Web Service
+      ||
+      NestJs Api
+      ||
+      NodeJs
+      ||
+      PostgreSql
+      Database
+
+## Overview of GetCountryRepository
+  It contains the implementation of redis caching, 
+  
+              getCountry endpoint for fetching specified country from the provided api and 
+  
+              fetchCountryData which fetches data from the database ensuring consistency. Sorting is implemented also.
+
+## Overview of CountryRepository
+  it contains : countryData api for fetching countries with respect to criteria of pagination, region and population
+
+              getRegion api for fetching countries with respect to their regions
+
+              getLanguages api for fetching countries with respect to languages being spoken
+
+              getAggregatedStats api for fetching data with respect to aggregation
+
+## Security
+  The implenetation of custom authentication to generate an api key which will grant access to the use of this api's
+
+  The implementaion of rate limiting to ensure that dubios acts are curtailed
+
+## Performance 
+  The implementation of redis caching in the getCountry() endpoint ensures that performance is optimized
+
+  The structure of the api ensures that concurrency is handled adequately
+
+## Documentaion
+  Documentation is done with the use of swagger Api can be visited on     (http://localhost:3002/api)
+
+## logging
+  Logging was implemented with the use Logger a library available to nestjs
+  For optimization of logging, the use of third party apps like sentry can be employed
+
+## Testing
+  implementation of testing was carried out on the getCountry api with the use of jest.
+
+
+● Highlights of interesting challenges or features.
+  Implementing the redis caching 
+
+● Aspects you are particularly proud of.
+  implementaion of the caching
+
+● Potential improvements or additional features you would add if you
+  had more time.
+  interation with third party app like sentry for logging and debugging

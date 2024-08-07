@@ -11,6 +11,7 @@ export class RedisService {
     });
   }
 
+  ///initialising redis======
   getClient(): Redis {
     return this.redis;
   }

@@ -16,9 +16,9 @@ export class AuthRepository extends Repository<AuthEntity> {
     super(AuthEntity, dataSource.createEntityManager());
   }
 
+  //====endpoint for generating apikey for any user ====
   async generateApiKey(authDto: AuthDto): Promise<authObject> {
     const { username } = authDto;
-    console.log(username);
 
     const user = await AuthEntity.find({
       where: {
@@ -35,6 +35,7 @@ export class AuthRepository extends Repository<AuthEntity> {
     newUser.apiKey = apiKey;
 
     try {
+      //=====save user details===
       await newUser.save();
       console.log(newUser);
       return {
@@ -49,6 +50,7 @@ export class AuthRepository extends Repository<AuthEntity> {
     }
   }
 
+  //====endpoint for validating apiKey =====
   async validateApiKey(apiKey: string): Promise<authObject | null> {
     const user = await this.findOne({ where: { apiKey } });
     return user

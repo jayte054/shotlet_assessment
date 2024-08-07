@@ -21,6 +21,7 @@ export class GetCountryRepository extends Repository<GetCountryEntity> {
     super(GetCountryEntity, dataSource.createEntityManager());
   }
 
+  //=====private methods for caching====//
   private async incrementRequestcount(
     key: string,
     ttl: number,
@@ -60,6 +61,7 @@ export class GetCountryRepository extends Repository<GetCountryEntity> {
     }
   }
 
+  //====endpoint for getting a particular country and its details====//
   getCountry = async (name: string) => {
     const cachedKey = `country:${name}`;
     const rateLimitKey = `${this.rateLimitKeyPrefix}:${name}`;
@@ -106,6 +108,7 @@ export class GetCountryRepository extends Repository<GetCountryEntity> {
     }
   };
 
+  //====endpoint for fetching saved data from the database==///
   fetchCountryData = async (
     sortBy: keyof GetCountryEntity,
     order: 'ASC' | 'DESC' = 'ASC',
