@@ -72,7 +72,6 @@ export class GetCountryRepository extends Repository<GetCountryEntity> {
 
     const cachedData = await this.getCachedData(cachedKey);
     if (cachedData) {
-      console.log(cachedData);
       return cachedData;
     }
     try {
@@ -102,7 +101,6 @@ export class GetCountryRepository extends Repository<GetCountryEntity> {
       );
       return country;
     } catch (error) {
-      console.log(error);
       this.logger.error(`failed to retrieve data for country`);
       throw new InternalServerErrorException();
     }
@@ -121,9 +119,10 @@ export class GetCountryRepository extends Repository<GetCountryEntity> {
     const fetchCountries = await GetCountryEntity.find(options);
 
     if (fetchCountries.length === 0) {
+      this.logger.error('failed to fetch countries');
       throw new NotFoundException();
     }
-    console.log(fetchCountries);
+    this.logger.verbose('successfully fetched data');
     return fetchCountries;
   };
 }
