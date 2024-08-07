@@ -7,11 +7,10 @@ config();
 export class RedisService {
   private readonly redis: Redis;
   constructor() {
-    this.redis =
-      new Redis({
-        host: process.env.REDIS_HOST,
-        port: parseInt(process.env.REDIS_PORT, 10),
-      }) || new Redis(process.env.REDIS_URL);
+    this.redis = new Redis({
+      host: process.env.REDIS_HOST,
+      port: parseInt(process.env.REDIS_PORT, 10),
+    }) || new Redis(process.env.REDIS_URL);
   }
 
   ///initializing redis======
