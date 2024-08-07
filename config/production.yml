@@ -1,2 +1,7 @@
 db:
+  host: "dpg-cqpkde5svqrc73ftar6g-a"
+  username: "shotlet_db_user"
+  password: "QODeTY5vPTffqvkaMhBl1y90PIVqOew0"
+  port: 5432
+  database: shotlet_db
   synchronize: true
