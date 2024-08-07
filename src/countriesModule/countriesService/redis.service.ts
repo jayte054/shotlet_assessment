@@ -14,7 +14,7 @@ export class RedisService {
       }) || new Redis(process.env.REDIS_URL);
   }
 
-  ///initializing redis======
+  //initializing redis======
   getClient(): Redis {
     try {
       return this.redis;
