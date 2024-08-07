@@ -8,7 +8,7 @@ export class RedisService {
   private readonly redis: Redis;
   constructor() {
     this.redis = new Redis({
-      host: process.env.Redis_HOST,
+      host: process.env.REDIS_HOST,
       port: parseInt(process.env.REDIS_PORT, 10),
     });
   }
