@@ -37,7 +37,6 @@ export class AuthRepository extends Repository<AuthEntity> {
     try {
       //=====save user details===
       await newUser.save();
-      console.log(newUser);
       return {
         id: newUser.id,
         username: newUser.username,
