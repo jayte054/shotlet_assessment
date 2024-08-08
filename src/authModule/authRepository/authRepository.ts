@@ -37,6 +37,7 @@ export class AuthRepository extends Repository<AuthEntity> {
     try {
       //=====save user details===
       await newUser.save();
+      this.logger.verbose('api key successfully generated');
       return {
         id: newUser.id,
         username: newUser.username,

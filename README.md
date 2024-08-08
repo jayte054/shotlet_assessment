@@ -162,10 +162,14 @@ countries.controller: countryData()
 
 ● Highlights of interesting challenges or features.
   Implementing the redis caching 
+  implementing the rate limiting
+  implementing the aggregated stats
 
 ● Aspects you are particularly proud of.
-  implementaion of the caching
+  implementaion of the caching with the use of redis
 
 ● Potential improvements or additional features you would add if you
   had more time.
-  interation with third party app like sentry for logging and debugging
+  integration with third party app like sentry for logging and debugging
+  centralizing the api call so it's not overly repeated in a utils module.
+  centralzing the redis caching so it works with respect to all the endpoints in a utils module

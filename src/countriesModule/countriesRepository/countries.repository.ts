@@ -60,7 +60,7 @@ export class CountryRepository extends Repository<CountryEntity> {
             : [],
         })),
       };
-      console.log(endResult);
+      this.logger.verbose('country data fetched successfully');
       return endResult;
     } catch (error) {
       this.logger.debug('failed to fetch data');
@@ -101,7 +101,7 @@ export class CountryRepository extends Repository<CountryEntity> {
         },
         {},
       );
-      console.log(regions);
+      this.logger.verbose('regions fetched successfully');
       return regions;
     } catch (error) {
       this.logger.debug('failed to fetch regions');
@@ -135,6 +135,7 @@ export class CountryRepository extends Repository<CountryEntity> {
         },
         {},
       );
+      this.logger.verbose('languages fetched successfully');
       return languages;
     } catch (error) {
       this.logger.error('failed to fetch languages');
@@ -225,7 +226,7 @@ export class CountryRepository extends Repository<CountryEntity> {
               .totalSpeakers,
         },
       };
-
+      this.logger.verbose('aggregated stats successfully fetched');
       return result;
     } catch (error) {
       this.logger.debug('failed to get stats');
